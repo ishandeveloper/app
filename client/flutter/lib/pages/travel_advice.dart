@@ -1,5 +1,6 @@
 import 'package:who_app/api/content/schema/advice_content.dart';
 import 'package:who_app/components/dialogs.dart';
+import 'package:who_app/components/loading_indicator.dart';
 import 'package:who_app/components/page_button.dart';
 import 'package:who_app/components/page_scaffold/page_scaffold.dart';
 import 'package:who_app/generated/l10n.dart';
@@ -47,13 +48,11 @@ class _TravelAdviceState extends State<TravelAdvice> {
     return PageScaffold(
         showShareBottomBar: false,
         announceRouteManually: true,
-        body: [
-          _adviceContent != null ? _buildBody(context) : _buildLoading(),
-        ],
+        body: [_adviceContent != null ? _buildBody() : LoadingIndicator()],
         title: S.of(context).homePagePageButtonTravelAdvice);
   }
 
-  SliverList _buildBody(BuildContext context) {
+  SliverList _buildBody() {
     return SliverList(
         delegate: SliverChildListDelegate([
       Container(
@@ -104,14 +103,6 @@ class _TravelAdviceState extends State<TravelAdvice> {
         descriptionColor: Colors.white,
       ),
     );
-  }
-
-  SliverToBoxAdapter _buildLoading() {
-    return SliverToBoxAdapter(
-        child: Padding(
-      padding: const EdgeInsets.all(48.0),
-      child: CupertinoActivityIndicator(),
-    ));
   }
 
   List<Widget> _getItems(BuildContext context) {

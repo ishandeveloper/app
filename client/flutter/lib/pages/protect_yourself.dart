@@ -1,5 +1,6 @@
 import 'package:who_app/api/content/schema/fact_content.dart';
 import 'package:who_app/components/dialogs.dart';
+import 'package:who_app/components/loading_indicator.dart';
 import 'package:who_app/components/page_scaffold/page_scaffold.dart';
 import 'package:who_app/components/rive_animation.dart';
 import 'package:who_app/constants.dart';
@@ -48,11 +49,15 @@ class _ProtectYourselfState extends State<ProtectYourself> {
   @override
   Widget build(BuildContext context) {
     return PageScaffold(
-        title: S.of(context).protectYourselfTitle,
-        showShareBottomBar: false,
-        announceRouteManually: true,
-        body: [SliverList(delegate: SliverChildListDelegate(_buildCards()))]);
+      title: S.of(context).protectYourselfTitle,
+      showShareBottomBar: false,
+      announceRouteManually: true,
+      body: [_factContent != null ? _buildBody() : LoadingIndicator()],
+    );
   }
+
+  SliverList _buildBody() =>
+      SliverList(delegate: SliverChildListDelegate(_buildCards()));
 
   List<Widget> _buildCards() {
     return (_factContent?.items ?? []).map((fact) {
