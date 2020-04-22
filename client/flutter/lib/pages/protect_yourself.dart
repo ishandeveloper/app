@@ -52,7 +52,9 @@ class _ProtectYourselfState extends State<ProtectYourself> {
       title: S.of(context).protectYourselfTitle,
       showShareBottomBar: false,
       announceRouteManually: true,
-      body: [_factContent != null ? _buildBody() : LoadingIndicator()],
+      body: [
+        _factContent != null ? _buildBody() : LoadingIndicator(),
+      ],
     );
   }
 

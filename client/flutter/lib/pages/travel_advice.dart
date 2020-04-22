@@ -48,7 +48,9 @@ class _TravelAdviceState extends State<TravelAdvice> {
     return PageScaffold(
         showShareBottomBar: false,
         announceRouteManually: true,
-        body: [_adviceContent != null ? _buildBody() : LoadingIndicator()],
+        body: [
+          _adviceContent != null ? _buildBody() : LoadingIndicator(),
+        ],
         title: S.of(context).homePagePageButtonTravelAdvice);
   }
 
